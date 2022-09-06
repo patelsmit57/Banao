@@ -1,0 +1,120 @@
+[
+{
+    "model": "home.user",
+    "fields": {
+        "password": "pbkdf2_sha256$390000$PyOc3w2EaieiGjE9MyrSfm$aUXm2YYkzjMQsFScDTz5tnAW/N6Y1xwM3pDsWpUCcKY=",
+        "last_login": "2022-09-06T10:23:39.297Z",
+        "is_superuser": true,
+        "username": "smit",
+        "first_name": "SMIT",
+        "last_name": "PATEL",
+        "email": "123@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2022-09-06T08:04:06Z",
+        "picture": "photos/2022/09/06/1smit_tIigi6x.jpg",
+        "address": "47, ab def gef",
+        "city": "Palanpur",
+        "state": "Gujarat",
+        "pincode": 385001,
+        "Types_of_Users": "Doctor",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "home.user",
+    "fields": {
+        "password": "pbkdf2_sha256$390000$9mWZoixcS6ZAGKkKtp7haW$B0lm7bYAYvpcMp0SlCi5drWocAl72WDFkLwCZk3gRY8=",
+        "last_login": "2022-09-06T09:27:50.014Z",
+        "is_superuser": false,
+        "username": "patel",
+        "first_name": "Smit",
+        "last_name": "Patel",
+        "email": "patelsmit15150@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-09-06T09:27:34.345Z",
+        "picture": "photos/2022/09/06/1smit.jpg",
+        "address": "123 xyz",
+        "city": "Palanpur",
+        "state": "Gujarat",
+        "pincode": 385001,
+        "Types_of_Users": "Doctor",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 1,
+    "fields": {
+        "action_time": "2022-09-06T09:15:11.285Z",
+        "user": [
+            "smit"
+        ],
+        "content_type": [
+            "home",
+            "user"
+        ],
+        "object_id": "3",
+        "object_repr": "19",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2022-09-06T09:23:37.067Z",
+        "user": [
+            "smit"
+        ],
+        "content_type": [
+            "home",
+            "user"
+        ],
+        "object_id": "2",
+        "object_repr": "patel",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2022-09-06T09:23:49.170Z",
+        "user": [
+            "smit"
+        ],
+        "content_type": [
+            "home",
+            "user"
+        ],
+        "object_id": "4",
+        "object_repr": "19",
+        "action_flag": 3,
+        "change_message": ""
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2022-09-06T09:57:59.000Z",
+        "user": [
+            "smit"
+        ],
+        "content_type": [
+            "home",
+            "user"
+        ],
+        "object_id": "1",
+        "object_repr": "smit",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Picture\", \"Address\", \"City\", \"State\", \"Pincode\", \"Types of Users\"]}}]"
+    }
+}
+]

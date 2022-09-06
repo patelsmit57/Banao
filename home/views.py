@@ -1,0 +1,77 @@
+from django.shortcuts import redirect, render
+from .models import User
+from django.contrib import messages,auth
+from django.contrib.auth.decorators import login_required
+
+# Create your views here.
+@login_required(login_url='login')
+def dashboard(request):
+
+    current_user = request.user
+    item = User.objects.get(id=current_user.id)
+    return render(request, 'home/dashboard.html', {'item':item})
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request,user)
+            messages.success(request,'You are now logged in.')
+            return redirect('dashboard')
+        else:
+            messages.error(request, 'Invalid login credentials.')
+            return redirect('login')
+
+    return render(request, 'home/login.html')
+
+
+def sinup(request):
+    if request.method == "POST":
+        print("hello")
+        firstname = request.POST['fname']
+        lastname = request.POST['lname']
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+        picture = request.FILES['picture']
+        address = request.POST['address']
+        city = request.POST['city']
+        state = request.POST['state']
+        pincode = request.POST['pincode']
+        Types_of_Users = request.POST['Types_of_Users']
+
+        if len(password)<8:
+            messages.error(request, "Password Not Secure")
+            return redirect('sinup')
+        else:
+            if password==confirm_password:
+                if User.objects.filter(username=username).exists():
+                    messages.error(request, "Username already exists!")
+                    return redirect('sinup')
+                else:
+                    if  User.objects.filter(email=email).exists():
+                        messages.error(request, "Email already exists!")
+                        return redirect('sinup')
+                    else:
+                        user = User.objects.create_user(first_name=firstname, last_name=lastname, email=email, username=username, password=password, picture=picture, address=address, city=city, state=state, pincode=pincode, Types_of_Users=Types_of_Users)
+                        user.save()
+                        messages.success(request, 'You are registered successfully. you are login')
+                        return redirect('login')
+            else:
+                messages.error(request, "Password do not match.")
+                return redirect('sinup')
+    else:
+        # types = User.objects.values_list('Types_of_Users', flat=True).distinct()
+        return render(request, 'home/sinup.html')
+
+
+def logout(request):
+    if request.method == "POST":
+        auth.logout(request)
+        messages.success(request,'You are successfully logged out.')
+        return redirect('login')
+    return redirect('home')

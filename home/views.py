@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import User
+from .models import User, PostsModel
 from django.contrib import messages,auth
 from django.contrib.auth.decorators import login_required
 
@@ -30,7 +30,7 @@ def login(request):
 
 def sinup(request):
     if request.method == "POST":
-        print("hello")
+        # print("hello")
         firstname = request.POST['fname']
         lastname = request.POST['lname']
         username = request.POST['username']
@@ -75,3 +75,52 @@ def logout(request):
         messages.success(request,'You are successfully logged out.')
         return redirect('login')
     return redirect('home')
+
+
+def post(request):
+    # pass
+    if request.method == "POST":
+        title = request.POST['title']
+        images = request.FILES['images']
+        Category = request.POST['Category']
+        Content = request.POST['Content']
+        user = request.user
+        UserName = user.username
+        a = title.split(' ')
+        slug = '-'.join(a)
+        blog = PostsModel(title=title, images=images, Category=Category, Content=Content, username=UserName, slug=slug)
+        blog.save()
+        messages.success(request, 'Blog post successfully created.')
+        return redirect('post')
+
+    return render(request, 'home/post.html')
+
+
+def all(request):
+    user = request.user
+    if user.Types_of_Users == 'Doctor':
+        object = PostsModel.objects.filter(username=user.username)
+        item1 = object.filter(Category='1')
+        item2 = object.filter(Category='2')
+        item3 = object.filter(Category='3')
+        item4 = object.filter(Category='4')
+    else:
+        item1 = PostsModel.objects.filter(Category='1')
+        item2 = PostsModel.objects.filter(Category='2')
+        item3 = PostsModel.objects.filter(Category='3')
+        item4 = PostsModel.objects.filter(Category='4')
+    data = {
+        'item1':item1,
+        'item2':item2,
+        'item3':item3,
+        'item4':item4,
+    }
+    return render(request, 'home/all.html', data)
+
+
+def detail(request, slug):
+    item = PostsModel.objects.get(slug=slug)
+    data = {
+        'item':item
+    }
+    return render(request, 'home/detail.html', data)

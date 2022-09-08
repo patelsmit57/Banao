@@ -1,41 +1,26 @@
 [
 {
-    "model": "home.user",
+    "model": "sessions.session",
+    "pk": "qili0ckighjlsxmr2j7zkrw2nhm9r299",
     "fields": {
-        "password": "pbkdf2_sha256$390000$PyOc3w2EaieiGjE9MyrSfm$aUXm2YYkzjMQsFScDTz5tnAW/N6Y1xwM3pDsWpUCcKY=",
-        "last_login": "2022-09-06T10:23:39.297Z",
-        "is_superuser": true,
-        "username": "smit",
-        "first_name": "SMIT",
-        "last_name": "PATEL",
-        "email": "123@gmail.com",
-        "is_staff": true,
-        "is_active": true,
-        "date_joined": "2022-09-06T08:04:06Z",
-        "picture": "photos/2022/09/06/1smit_tIigi6x.jpg",
-        "address": "47, ab def gef",
-        "city": "Palanpur",
-        "state": "Gujarat",
-        "pincode": 385001,
-        "Types_of_Users": "Doctor",
-        "groups": [],
-        "user_permissions": []
+        "session_data": ".eJxVjDsOwyAQRO9CHSEwX6dM7zOgXViCkwgkY1dR7h5bcpGUM-_NvFmAbS1h67SEObErU-zy2yHEJ9UDpAfUe-Ox1XWZkR8KP2nnU0v0up3u30GBXva1McqQzDlah8pZL0lKD3rwOo_ohBARhUSQymaPe8yjQFLaA4khOnTs8wXK4jdb:1oWDBC:Qmo5ifOHz5TRznz914Rmy_RSI5iPOwlnjq7ttqGt9KQ",
+        "expire_date": "2022-09-22T08:46:34.806Z"
     }
 },
 {
     "model": "home.user",
     "fields": {
-        "password": "pbkdf2_sha256$390000$9mWZoixcS6ZAGKkKtp7haW$B0lm7bYAYvpcMp0SlCi5drWocAl72WDFkLwCZk3gRY8=",
-        "last_login": "2022-09-06T09:27:50.014Z",
-        "is_superuser": false,
-        "username": "patel",
+        "password": "pbkdf2_sha256$390000$tM1YmrV3Q3iJuEkwbRxpsK$cHMKwZklFkjxJaYlvmNIyhYjFqer3Ljk514Jo8Q/3Uk=",
+        "last_login": "2022-09-08T08:10:04Z",
+        "is_superuser": true,
+        "username": "smit",
         "first_name": "Smit",
         "last_name": "Patel",
         "email": "patelsmit15150@gmail.com",
-        "is_staff": false,
+        "is_staff": true,
         "is_active": true,
-        "date_joined": "2022-09-06T09:27:34.345Z",
-        "picture": "photos/2022/09/06/1smit.jpg",
+        "date_joined": "2022-09-08T08:09:53Z",
+        "picture": "photos/2022/09/08/smit.jpg",
         "address": "123 xyz",
         "city": "Palanpur",
         "state": "Gujarat",
@@ -46,64 +31,92 @@
     }
 },
 {
+    "model": "home.user",
+    "fields": {
+        "password": "pbkdf2_sha256$390000$jAGwHEKvcP7js0jhGlGTXj$qutFei7ANTpXTPt5LiZCQblNVyYQuBR/oZ3M3EERFm0=",
+        "last_login": "2022-09-08T08:43:25.679Z",
+        "is_superuser": false,
+        "username": "xyz",
+        "first_name": "xyz",
+        "last_name": "PATEL",
+        "email": "xyz@gmail.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-09-08T08:43:08.945Z",
+        "picture": "photos/2022/09/08/ford-mustang.png",
+        "address": "47, CITY",
+        "city": "Palanpur",
+        "state": "Gujarat",
+        "pincode": 385001,
+        "Types_of_Users": "Doctor",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "home.user",
+    "fields": {
+        "password": "pbkdf2_sha256$390000$5kB9SLNHxagEyJCTV2cAS9$Ec3gaJRKs6jhBNBK8Jfzd0CFnRm6TkUT/8UzflOsOaY=",
+        "last_login": "2022-09-08T08:46:34.799Z",
+        "is_superuser": false,
+        "username": "patel",
+        "first_name": "SMIT",
+        "last_name": "PATEL",
+        "email": "patel@student.rru.ac.in",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2022-09-08T08:46:20.213Z",
+        "picture": "photos/2022/09/08/1smit.jpg",
+        "address": "47, CITY ",
+        "city": "Palanpur",
+        "state": "Gujarat",
+        "pincode": 385001,
+        "Types_of_Users": "Patient",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "home.postsmodel",
+    "pk": 1,
+    "fields": {
+        "title": "sdf sdkf",
+        "images": "image/2022/09/08/woman-doctor.webp",
+        "Category": "2",
+        "Content": "Wingstop Inc. is an American multinational chain of aviation-themed restaurants specializing in chicken wings. Wingstop locations are decorated following a 1930s and 1940s pre-jet aviation theme. The restaurant chain was founded in 1994 in Garland, Texas, and began offering franchises in 1997.",
+        "username": "smit",
+        "slug": "sdf-sdkf"
+    }
+},
+{
+    "model": "home.postsmodel",
+    "pk": 2,
+    "fields": {
+        "title": "wed df",
+        "images": "image/2022/09/08/images.jfif",
+        "Category": "3",
+        "Content": "Wingstop Inc. is an American multinational chain of aviation-themed restaurants specializing in chicken wings. Wingstop locations are decorated following a ...",
+        "username": "smit",
+        "slug": "wed-df"
+    }
+},
+{
+    "model": "home.postsmodel",
+    "pk": 3,
+    "fields": {
+        "title": "weasc aesvmd ",
+        "images": "image/2022/09/08/images_1.jfif",
+        "Category": "3",
+        "Content": "Doctor's Data lab results are available for clinicians to review online. Sign in now. Access results and insightful commentary written by the Doctor's Data scientific team. Operating since 1972. Innovative specialty test. Services: Gastrointestinal health, Toxic elements.",
+        "username": "xyz",
+        "slug": "weasc-aesvmd-"
+    }
+},
+{
     "model": "admin.logentry",
     "pk": 1,
     "fields": {
-        "action_time": "2022-09-06T09:15:11.285Z",
-        "user": [
-            "smit"
-        ],
-        "content_type": [
-            "home",
-            "user"
-        ],
-        "object_id": "3",
-        "object_repr": "19",
-        "action_flag": 3,
-        "change_message": ""
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 2,
-    "fields": {
-        "action_time": "2022-09-06T09:23:37.067Z",
-        "user": [
-            "smit"
-        ],
-        "content_type": [
-            "home",
-            "user"
-        ],
-        "object_id": "2",
-        "object_repr": "patel",
-        "action_flag": 3,
-        "change_message": ""
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 3,
-    "fields": {
-        "action_time": "2022-09-06T09:23:49.170Z",
-        "user": [
-            "smit"
-        ],
-        "content_type": [
-            "home",
-            "user"
-        ],
-        "object_id": "4",
-        "object_repr": "19",
-        "action_flag": 3,
-        "change_message": ""
-    }
-},
-{
-    "model": "admin.logentry",
-    "pk": 4,
-    "fields": {
-        "action_time": "2022-09-06T09:57:59.000Z",
+        "action_time": "2022-09-08T08:11:54.986Z",
         "user": [
             "smit"
         ],
@@ -115,6 +128,60 @@
         "object_repr": "smit",
         "action_flag": 2,
         "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Picture\", \"Address\", \"City\", \"State\", \"Pincode\", \"Types of Users\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 2,
+    "fields": {
+        "action_time": "2022-09-08T08:12:24.997Z",
+        "user": [
+            "smit"
+        ],
+        "content_type": [
+            "home",
+            "user"
+        ],
+        "object_id": "1",
+        "object_repr": "smit",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Types of Users\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 3,
+    "fields": {
+        "action_time": "2022-09-08T08:29:48.386Z",
+        "user": [
+            "smit"
+        ],
+        "content_type": [
+            "home",
+            "postsmodel"
+        ],
+        "object_id": "1",
+        "object_repr": "sdf sdkf   ->category: 2",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Slug\"]}}]"
+    }
+},
+{
+    "model": "admin.logentry",
+    "pk": 4,
+    "fields": {
+        "action_time": "2022-09-08T08:38:18.148Z",
+        "user": [
+            "smit"
+        ],
+        "content_type": [
+            "home",
+            "postsmodel"
+        ],
+        "object_id": "2",
+        "object_repr": "wed df   ->category: 3",
+        "action_flag": 2,
+        "change_message": "[{\"changed\": {\"fields\": [\"Slug\"]}}]"
     }
 }
 ]

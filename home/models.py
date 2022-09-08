@@ -19,3 +19,22 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class PostsModel(models.Model):
+    type = (
+        ('1','Mental Health'),
+        ('2','Heart Disease'),
+        ('3','Covid19'),
+        ('4','Immunization')
+    )
+
+    title = models.CharField(max_length=255)
+    images = models.ImageField(upload_to='image/%Y/%m/%d')
+    Category = models.CharField(choices=type, max_length=50)
+    Content = models.TextField()
+    username = models.CharField(max_length=255)
+    slug = models.SlugField()
+
+    def __str__(self):
+        return f"{self.title}   ->category: {self.Category}"

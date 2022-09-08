@@ -77,6 +77,7 @@ def logout(request):
     return redirect('home')
 
 
+@login_required(login_url='login')
 def post(request):
     # pass
     if request.method == "POST":
@@ -96,6 +97,7 @@ def post(request):
     return render(request, 'home/post.html')
 
 
+@login_required(login_url='login')
 def all(request):
     user = request.user
     if user.Types_of_Users == 'Doctor':
@@ -118,6 +120,7 @@ def all(request):
     return render(request, 'home/all.html', data)
 
 
+@login_required(login_url='login')
 def detail(request, slug):
     item = PostsModel.objects.get(slug=slug)
     data = {

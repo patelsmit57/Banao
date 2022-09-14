@@ -4,6 +4,22 @@ from django.contrib import messages,auth
 from django.contrib.auth.decorators import login_required
 
 
+
+
+
+# from google.oauth2 import service_account
+
+# SCOPES = ["https://www.googleapis.com/auth/calendar"]
+
+# service_account_email = "doctor-patient-banao@banao-django.iam.gserviceaccount.com"
+# credentials = service_account.Credentials.from_service_account_file('banao-django-c8a0ae96b868.json')
+# scoped_credentials = credentials.with_scopes(SCOPES)
+# calendarId = "mgvajulokdn99ps47eb2g02728@group.calendar.google.com"
+
+
+
+
+
 # Create your views here.
 @login_required(login_url='login')
 def dashboard(request):
@@ -139,32 +155,6 @@ def all_doctor(request):
     return render(request, 'home/all_doctor.html', data)
 
 
-from datetime import datetime,time
-def appointment(request,id):
-    if request.method == 'POST':
-        i = User.objects.get(id=id)
-        doctor_name =  i.username
-        speciality = request.POST['speciality']
-        date = request.POST['date']
-        start_Time = request.POST['appointment_time']
-        patient_name = request.user.username
-        print(start_Time, type(start_Time))
-        print(date,speciality,doctor_name,patient_name)
-
-        s = datetime.strptime(start_Time, '%H:%M').time()
-        try :
-            end = time(s.minute+45)
-        except:
-            # a = time(s.minute)+45-60
-            end = time(s.hour + 1, s.minute-15)
-
-        data = AppointmentModel(doctor_name=doctor_name, patient_name=patient_name, speciality=speciality, date=date, start_Time=start_Time, end_time=end)
-        data.save()
-        messages.success(request, 'successfully Appointment.')
-        return redirect('PatientAppointment')
-
-    return render(request, 'home/appointment.html', {'item':id})
-
 
 def PatientAppointment(request):
     i = request.user.username
@@ -176,3 +166,76 @@ def showAppointment(request):
     i = request.user.username
     item = AppointmentModel.objects.filter(doctor_name=i)
     return render(request, 'home/showAppointment.html',{'items':item})
+
+
+
+
+import os
+from decouple import config
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+# import datetime
+
+
+# Google service account
+SCOPES = ["https://www.googleapis.com/auth/calendar"]
+
+service_account_email = config('service_account_email')
+
+credentials = service_account.Credentials.from_service_account_file('./banao-django.json')
+scoped_credentials = credentials.with_scopes(SCOPES)
+calendarId = config('calendarId')
+
+def build_service(request):
+
+    service = build("calendar", "v3", credentials=scoped_credentials)
+    return service
+
+
+from datetime import datetime,time, timedelta
+def appointment(request,id):
+    if request.method == 'POST':
+        i = User.objects.get(id=id)
+        doctor_name =  i.username
+        speciality = request.POST['speciality']
+        date = request.POST['date']
+        start_Time = request.POST['appointment_time']
+        patient_name = request.user.username
+        print(start_Time, type(start_Time))
+        print(date,speciality,doctor_name,patient_name)
+
+        d1 = date+' '+start_Time
+        startTime = datetime.strptime(d1, '%Y-%m-%d %H:%M')
+        print(startTime)
+
+        s = datetime.strptime(start_Time, '%H:%M')
+
+        end = s + timedelta(minutes=45)
+        c = str(end)
+        d2 = date+c[10:]
+
+        endTime = datetime.strptime(d2, '%Y-%m-%d %H:%M:%S')
+        print(endTime)
+
+        service = build_service(request)
+
+        event = (
+            service.events().insert(
+                calendarId=calendarId,
+                body={
+                    "summary": speciality,
+                    "start": {"dateTime": startTime.isoformat(), 'timeZone': 'Asia/Kolkata',},
+                    "end": {"dateTime": endTime.isoformat(), 'timeZone': 'Asia/Kolkata',},
+                },
+            ).execute()
+        )
+
+        print(event)
+
+
+        data = AppointmentModel(doctor_name=doctor_name, patient_name=patient_name, speciality=speciality, date=date, start_Time=start_Time, end_time=end)
+        data.save()
+        messages.success(request, 'successfully Appointment.')
+        return redirect('PatientAppointment')
+
+    return render(request, 'home/appointment.html', {'item':id})

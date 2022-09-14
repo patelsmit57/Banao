@@ -18,7 +18,7 @@ class User(AbstractUser):
     Types_of_Users = models.CharField(choices=type, max_length=10, default=False)
 
     def __str__(self):
-        return self.username
+        return f"user : {self.username}   Type : {self.Types_of_Users}"
 
 
 class PostsModel(models.Model):
@@ -38,3 +38,15 @@ class PostsModel(models.Model):
 
     def __str__(self):
         return f"{self.title}   ->category: {self.Category}"
+
+
+class AppointmentModel(models.Model):
+    doctor_name = models.CharField(max_length=150)
+    patient_name = models.CharField(max_length=150)
+    speciality = models.CharField(max_length=150)
+    date = models.DateField()
+    start_Time = models.TimeField()
+    end_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.speciality}  ---> docter : {self.doctor_name}"

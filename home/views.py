@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
-from .models import User, PostsModel
+from .models import User, PostsModel,AppointmentModel
 from django.contrib import messages,auth
 from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 @login_required(login_url='login')
@@ -127,3 +128,51 @@ def detail(request, slug):
         'item':item
     }
     return render(request, 'home/detail.html', data)
+
+
+@login_required(login_url='login')
+def all_doctor(request):
+    item = User.objects.filter(Types_of_Users='Doctor')
+    data = {
+        'items':item
+    }
+    return render(request, 'home/all_doctor.html', data)
+
+
+from datetime import datetime,time
+def appointment(request,id):
+    if request.method == 'POST':
+        i = User.objects.get(id=id)
+        doctor_name =  i.username
+        speciality = request.POST['speciality']
+        date = request.POST['date']
+        start_Time = request.POST['appointment_time']
+        patient_name = request.user.username
+        print(start_Time, type(start_Time))
+        print(date,speciality,doctor_name,patient_name)
+
+        s = datetime.strptime(start_Time, '%H:%M').time()
+        try :
+            end = time(s.minute+45)
+        except:
+            # a = time(s.minute)+45-60
+            end = time(s.hour + 1, s.minute-15)
+
+        data = AppointmentModel(doctor_name=doctor_name, patient_name=patient_name, speciality=speciality, date=date, start_Time=start_Time, end_time=end)
+        data.save()
+        messages.success(request, 'successfully Appointment.')
+        return redirect('PatientAppointment')
+
+    return render(request, 'home/appointment.html', {'item':id})
+
+
+def PatientAppointment(request):
+    i = request.user.username
+    item = AppointmentModel.objects.filter(patient_name=i)
+
+    return render(request, 'home/PatientAppointment.html',{'items':item})
+
+def showAppointment(request):
+    i = request.user.username
+    item = AppointmentModel.objects.filter(doctor_name=i)
+    return render(request, 'home/showAppointment.html',{'items':item})

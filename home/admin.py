@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import User, PostsModel
+from .models import User, PostsModel, AppointmentModel
 
 class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('title',)}
@@ -9,3 +9,4 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(User)
 admin.site.register(PostsModel,PostAdmin)
+admin.site.register(AppointmentModel)
